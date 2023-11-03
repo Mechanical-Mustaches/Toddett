@@ -5,23 +5,54 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+/*
+ * COMMAND IMPORTS
+ */
+import frc.robot.commands.RollerCommands.*;
+
+/*
+ * SUBSYSTEM IMPORTS
+ */
+
+ import frc.robot.subsystems.Roller;
+ import frc.robot.subsystems.LedLights;
 
 
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  XboxController m_driverController = new XboxController(OperatorConstants.kDriverControllerPort);
+  static Joystick leftJoystick = new Joystick(OperatorConstants.kDriverControllerPort);
+  static Joystick rightJoystick = new Joystick(OperatorConstants.kDriverControllerPort);
+
+  LedLights LEDs = new LedLights();
+  Roller roller = new Roller();
 
 
 
   public RobotContainer() {
     configureBindings();
+
+    LEDs.setColor(50, 50, 0);
   }
 
   private void configureBindings() {
-  
+    JoystickButton Button_X = new JoystickButton(leftJoystick, 4);
+    JoystickButton Button_Y = new JoystickButton(leftJoystick, 3);
+    JoystickButton Button_A = new JoystickButton(leftJoystick, 2);
+    JoystickButton Button_B = new JoystickButton(leftJoystick, 1);
+
+    Button_X.onTrue(new R_ForwardCommand(roller));
+    Button_X.onFalse(new R_StopCommand(roller));
+
+    Button_Y.onTrue(new R_ReverseCommand(roller));
+    Button_Y.onFalse(new R_StopCommand(roller));
+
+
   }
 
 

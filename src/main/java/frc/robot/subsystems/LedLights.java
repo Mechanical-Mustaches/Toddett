@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LedLights extends SubsystemBase {
     //9 represents the port number
-    private AddressableLED m_led = new AddressableLED(9);
-    private AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(6);
+    public AddressableLED m_led = new AddressableLED(9);
+    public AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(6);
     
 
     public LedLights(){
@@ -16,12 +16,13 @@ public class LedLights extends SubsystemBase {
         m_led.start();
     }
 
-    public void setColor(int red, int green, int blue){
+    public int setColor(int red, int green, int blue){
        for (var i = 0; i < m_ledBuffer.getLength(); i++){
             m_ledBuffer.setRGB(i, red, green, blue);
        }
 
         m_led.setData(m_ledBuffer);
+        return red + green + blue;
     }
 
     // private void rainbow(){
