@@ -37,7 +37,7 @@ public class RobotContainer {
   public RobotContainer() {
     configureBindings();
 
-    LEDs.setColor(50, 50, 0);
+    LEDs.defaultColor();
   }
 
   private void configureBindings() {
@@ -46,11 +46,11 @@ public class RobotContainer {
     JoystickButton Button_A = new JoystickButton(leftJoystick, 2);
     JoystickButton Button_B = new JoystickButton(leftJoystick, 1);
 
-    Button_X.onTrue(new R_ForwardCommand(roller));
-    Button_X.onFalse(new R_StopCommand(roller));
+    Button_X.onTrue(new R_ForwardCommand(roller, LEDs));
+    Button_X.onFalse(new R_StopCommand(roller, LEDs));
 
-    Button_Y.onTrue(new R_ReverseCommand(roller));
-    Button_Y.onFalse(new R_StopCommand(roller));
+    Button_Y.onTrue(new R_ReverseCommand(roller, LEDs));
+    Button_Y.onFalse(new R_StopCommand(roller, LEDs));
 
 
   }
