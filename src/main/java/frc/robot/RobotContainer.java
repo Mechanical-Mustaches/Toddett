@@ -13,13 +13,16 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * COMMAND IMPORTS
  */
 import frc.robot.commands.RollerCommands.*;
+import frc.robot.commands.ShooterCommands.DistanceSensor;
+import frc.robot.commands.ShooterCommands.s_Stop;
 
 /*
  * SUBSYSTEM IMPORTS
  */
 
  import frc.robot.subsystems.Roller;
- import frc.robot.subsystems.LedLights;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.LedLights;
 
 
 public class RobotContainer {
@@ -31,6 +34,7 @@ public class RobotContainer {
 
   LedLights LEDs = new LedLights();
   Roller roller = new Roller();
+  Shooter shooter = new Shooter();
 
 
 
@@ -52,7 +56,8 @@ public class RobotContainer {
     Button_Y.onTrue(new R_ReverseCommand(roller, LEDs));
     Button_Y.onFalse(new R_StopCommand(roller, LEDs));
 
-
+    Button_A.onTrue(new DistanceSensor(shooter));
+    Button_A.onFalse(new s_Stop(shooter));
   }
 
 
