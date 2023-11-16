@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Shooter extends SubsystemBase {
     CANSparkMax s_motor = new CANSparkMax(9, MotorType.kBrushless);
     private double speed = 0.5;
-    TimeOfFlight r_distanceSensor = new TimeOfFlight(0);
+   // TimeOfFlight r_distanceSensor = new TimeOfFlight(0);
 
     public Shooter(){
        // r_distanceSensor.pidGet();

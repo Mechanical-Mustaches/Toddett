@@ -4,6 +4,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -14,20 +15,21 @@ public class Roller extends SubsystemBase{
     RelativeEncoder r_encoder;
     
     DigitalInput input = new DigitalInput(0);
+  // AnalogInput input = new AnalogInput(0);
 
     public Roller(){
     }
 
-   
+    
     public void forward(){
         r_motor.set(r_speed);
     }
 
     public void canMoveForward(){
-        if(input.get() == true){
+        if(input.get() == false){
             r_motor.set(r_speed);
         }
-        else if(input.get() == false){
+        else if(input.get() == true){
             r_motor.set(0);
         }
     }

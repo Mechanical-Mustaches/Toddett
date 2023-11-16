@@ -45,10 +45,10 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    JoystickButton Button_X = new JoystickButton(leftJoystick, 4);
-    JoystickButton Button_Y = new JoystickButton(leftJoystick, 3);
-    JoystickButton Button_A = new JoystickButton(leftJoystick, 2);
-    JoystickButton Button_B = new JoystickButton(leftJoystick, 1);
+    JoystickButton Button_X = new JoystickButton(leftJoystick, 3);
+    JoystickButton Button_Y = new JoystickButton(leftJoystick, 4);
+    JoystickButton Button_A = new JoystickButton(leftJoystick, 1);
+    JoystickButton Button_B = new JoystickButton(leftJoystick, 2);
 
     Button_X.onTrue(new R_ForwardCommand(roller, LEDs));
     Button_X.onFalse(new R_StopCommand(roller, LEDs));
@@ -58,6 +58,10 @@ public class RobotContainer {
 
     Button_A.onTrue(new DistanceSensor(shooter));
     Button_A.onFalse(new s_Stop(shooter));
+
+    Button_B.onTrue(new R_CanMoveFord(roller));
+    Button_B.onFalse(new R_StopCommand(roller, LEDs));
+    
   }
 
 
